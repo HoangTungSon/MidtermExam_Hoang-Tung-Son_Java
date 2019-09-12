@@ -10,7 +10,7 @@ public class ContactTest {
         contacts.add(new Contact("B", "2", "234567"));
         contacts.add(new Contact("C", "3", "345678"));
         contacts.add(new Contact("D", "4", "456789"));
-        contacts.add(new Contact("E", "5", "567891"));
+        contacts.add(new Contact("A", "5", "567891"));
         contacts.add(new Contact("F", "6", "678912"));
         contacts.add(new Contact("G", "7", "789123"));
         contacts.add(new Contact("H", "8", "891234"));
@@ -19,6 +19,7 @@ public class ContactTest {
         addNewContact(contacts, new Contact("John", "Smith", "492813740"));
         editContact(contacts, 12, new Contact("John", "Smith", "492813740"));
         removeContact(contacts, "1");
+        findByInput(contacts, "A");
         viewContact(contacts);
 
     }
@@ -48,7 +49,7 @@ public class ContactTest {
         for (int i = 0; i < contacts.size(); i++) {
             if (phoneNumber.equals(contacts.get(i).getPhoneNumber())) {
                 contacts.remove(i);
-                System.out.println("Successfully remove the contact with " + phoneNumber);
+                System.out.println("Successfully remove the contact: " + phoneNumber);
                 return true;
             }
         }
@@ -56,17 +57,18 @@ public class ContactTest {
         return false;
     }
 
-    private static boolean findByInput(LinkedList<Contact> contacts, String input) {
+    private static void findByInput(LinkedList<Contact> contacts, String input) {
+        boolean check = false;
         for (Contact contact : contacts) {
             if (input.equals(contact.getPhoneNumber())
                     || input.equals(contact.getFirstName())
                     || input.equals(contact.getLastName())) {
                 System.out.println("Contact: " + contact.getFirstName() + " " + contact.getLastName() + " - Phone number: " + contact.getPhoneNumber());
-                return true;
+                check = true;
             }
-
         }
-        System.out.println("There's no matched output");
-        return false;
+        if (check != true) {
+            System.out.println("There's no matched output");
+        }
     }
 }
