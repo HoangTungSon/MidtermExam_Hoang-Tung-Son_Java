@@ -18,7 +18,7 @@ public class ContactTest {
 
         addNewContact(contacts, new Contact("John", "Smith", "492813740"));
         editContact(contacts, 12, new Contact("John", "Smith", "492813740"));
-        removeContact(contacts, "123123213");
+        removeContact(contacts, "1");
         viewContact(contacts);
 
     }
@@ -31,12 +31,14 @@ public class ContactTest {
 
     private static void addNewContact(LinkedList<Contact> contacts, Contact contact) {
         contacts.addLast(contact);
+        System.out.println("Successfully adding new contact");
     }
 
     private static void editContact(LinkedList<Contact> contacts, int index, Contact contact) {
         try {
             contacts.add(index, contact);
             contacts.remove(index + 1);
+            System.out.println("Successfully update the contact");
         } catch (IndexOutOfBoundsException ex) {
             System.out.println("There's no matched index");
         }
@@ -46,6 +48,7 @@ public class ContactTest {
         for (int i = 0; i < contacts.size(); i++) {
             if (phoneNumber.equals(contacts.get(i).getPhoneNumber())) {
                 contacts.remove(i);
+                System.out.println("Successfully remove the contact with " + phoneNumber);
                 return true;
             }
         }
@@ -54,11 +57,11 @@ public class ContactTest {
     }
 
     private static boolean findByInput(LinkedList<Contact> contacts, String input) {
-        for (int i = 0; i < contacts.size(); i++) {
-            if (input.equals(contacts.get(i).getPhoneNumber())
-                    || input.equals(contacts.get(i).getFirstName())
-                    || input.equals(contacts.get(i).getLastName())) {
-                contacts.remove(i);
+        for (Contact contact : contacts) {
+            if (input.equals(contact.getPhoneNumber())
+                    || input.equals(contact.getFirstName())
+                    || input.equals(contact.getLastName())) {
+                System.out.println("Contact: " + contact.getFirstName() + " " + contact.getLastName() + " - Phone number: " + contact.getPhoneNumber());
                 return true;
             }
 

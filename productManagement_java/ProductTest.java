@@ -43,6 +43,7 @@ public class ProductTest {
         try {
             products.add(index, updateProduct);
             products.remove(index + 1);
+            System.out.println("Successfully updating the product");
         } catch (IndexOutOfBoundsException ex) {
             System.out.println("There's no matched index");
         }
